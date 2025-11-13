@@ -1,13 +1,16 @@
+import 'package:fashion_store/app/detailed_page/view/banner/views/banner_detailed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BannerSection extends StatelessWidget {
   final RxList banners;
   final RxInt currentPage;
+  final String? title; // 👈 Optional title
 
   BannerSection({
     super.key,
     required this.banners,
+    this.title, // 👈 Accept title
     RxInt? currentPage,
   }) : currentPage = currentPage ?? 0.obs;
 
@@ -15,7 +18,7 @@ class BannerSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final bannerHeight = screenHeight * 0.65; // 🔹 70% of total screen height
+    final bannerHeight = screenHeight * 0.65;
 
     if (banners.isEmpty) {
       return const SizedBox.shrink();
@@ -23,7 +26,23 @@ class BannerSection extends StatelessWidget {
 
     return Obx(() {
       return Column(
-        children: [
+        crossAxisAlignment: CrossAxisAlignment.start, // 👈 Align title to left
+        children:
+         [
+          // 🔹 Optional title
+          if (title != null && title!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(
+                title!,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+
+          // 🔹 Banner carousel
           SizedBox(
             height: bannerHeight,
             width: screenWidth,
@@ -35,43 +54,49 @@ class BannerSection extends StatelessWidget {
                 final banner = banners[index];
                 final imagePath = banner["image"] ?? "";
 
-                return Container(
-                  width: screenWidth,
-                  margin: EdgeInsets.zero,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      // ✅ Detect and load network or asset image correctly
-                      imagePath.startsWith('http')
-                          ? Image.network(
-                              imagePath,
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  _errorPlaceholder(),
-                            )
-                          : Image.asset(
-                              imagePath,
-                              fit: BoxFit.cover,
-                              filterQuality: FilterQuality.high,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  _errorPlaceholder(),
+                return GestureDetector(
+                  onTap: () {
+                    // Handle banner tap if needed
+                   Get.to(() => BannerDetailPage(banner: banner));
+                  },
+                  child: Container(
+                    width: screenWidth,
+                    margin: EdgeInsets.zero,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        // ✅ Detect and load network or asset image correctly
+                        imagePath.startsWith('http')
+                            ? Image.network(
+                                imagePath,
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    _errorPlaceholder(),
+                              )
+                            : Image.asset(
+                                imagePath,
+                                fit: BoxFit.cover,
+                                filterQuality: FilterQuality.high,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    _errorPlaceholder(),
+                              ),
+                  
+                        // ✅ Gradient overlay
+                        Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                Colors.black45,
+                                Colors.transparent,
+                              ],
                             ),
-
-                      // ✅ Gradient overlay
-                      Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black45,
-                              Colors.transparent,
-                            ],
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },

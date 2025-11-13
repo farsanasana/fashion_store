@@ -2,11 +2,10 @@ import 'package:fashion_store/app/home/views/men/NewArrivalsSection.dart';
 import 'package:fashion_store/app/home/views/men/TopPicksSection.dart';
 import 'package:fashion_store/app/home/views/men/banner_sections.dart';
 import 'package:fashion_store/app/home/views/men/categories_section.dart';
-import 'package:fashion_store/app/home/views/men/crafted_with_intent_section.dart';
-import 'package:fashion_store/app/home/views/men/sectionds/fits_for_all.dart';
+import 'package:fashion_store/app/home/views/men/pack_it_up.dart';
 import 'package:fashion_store/app/home/views/men/sectionds/trendingMerchCard.dart';
+import 'package:fashion_store/app/home/views/men/sectionds/women/dynamicSection.dart';
 import 'package:fashion_store/app/home/views/men/sectionds/women/most_loved_design_section.dart';
-import 'package:fashion_store/app/home/views/widgets/most_loved_design.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controller/home_controller.dart';
@@ -43,20 +42,22 @@ class WomenSection extends StatelessWidget {
           //  CraftedWithIntentSection(category: 'women', title: 'CURATED FOR YOU',),
           TrendingMerchSection(category: 'women', title: 'CURATED FOR YOU'),
             const SizedBox(height: 10),
-            TrendingMerchSection(category: 'women', title: 'BOTTOM - LINE DENIM'),
+            PackItUp(category: 'women', title: "women early winter drops"),
             const SizedBox(height: 10),
-            FitForAllSection(fitForAll: controller.womenFitForAll, title: 'FITS FOR ALL',),
+          //  DynamicSections(title: 'title', sectionData: controller.womenDynamicList),
+DynamicSections(title: "Bottom Line Denim",sectionData: controller.womenBottomLine, ),            
+ //     FitForAllSection(fitForAll: controller.womenFitForAll, title: 'FITS FOR ALL',),
             const SizedBox(height: 10),
            // CraftedWithIntentSection(category: 'women', title: 'HOUSE OF LINEN',),
-           TrendingMerchSection(category: 'women', title: 'HOUSE OF LINEN'),
-            const SizedBox(height: 10),
-            TrendingMerchSection(category: 'women', title: 'STYLE MEETS COMFORT'),
-            const SizedBox(height: 10),
+DynamicSections(title: "House of Linen",sectionData: controller.womenHouseOfLinen, ),
 
-            TrendingMerchSection(category: 'women', title: 'THE CHILL GIRL EDIT',),
             const SizedBox(height: 10),
-            TrendingMerchSection(category: 'women', title: 'SHE MEANS BUSINESS',),
-            const SizedBox(height: 10),
+DynamicSections(title: "Style Meets Comfort",sectionData: controller.womenStyleComfort, ),         
+   const SizedBox(height: 10),
+
+DynamicSections(title: "The Chill Girl Edit",sectionData: controller.womenChillGirl, ),  
+          const SizedBox(height: 10),
+         
             MostLovedDesignSection(),
             const SizedBox(height: 10),
             TrendingMerchSection(category: 'women', title: 'TRENDING MERCH', ),

@@ -11,7 +11,7 @@ class MostLovedDesignSection extends StatelessWidget {
     final HomeController controller = Get.find();
 
     return Obx(() {
-      if (controller.shopForCategories.isEmpty) return const SizedBox.shrink();
+      if (controller.mostLovedDesign.isEmpty) return const SizedBox.shrink();
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +33,9 @@ class MostLovedDesignSection extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: controller.shopForCategories.length,
+              itemCount: controller.mostLovedDesign.length,
               itemBuilder: (context, index) {
-                final category = controller.shopForCategories[index];
+                final category = controller.mostLovedDesign[index];
                 return MostLovedDesignCard(category: category);
               },
             ),

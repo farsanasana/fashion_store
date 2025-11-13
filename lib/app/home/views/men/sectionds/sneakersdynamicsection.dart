@@ -1,27 +1,35 @@
-import 'package:fashion_store/app/home/controller/home_controller.dart';
-import 'package:fashion_store/app/home/views/widgets/SneakerCard.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:fashion_store/app/home/controller/home_controller.dart';
+import 'package:fashion_store/app/home/views/widgets/product_card2.dart';
 
-class SneakersOthersSection extends StatelessWidget {
-    final String title;
-  const SneakersOthersSection({super.key, required this.title});
+class Sneakersdynamicsection extends StatelessWidget {
+  
+  final String title;
+
+  const Sneakersdynamicsection({
+    super.key,
+    required this.title,
+  
+  });
 
   @override
   Widget build(BuildContext context) {
-     final controller = Get.find<HomeController>();
+    final controller = Get.find<HomeController>();
     final lowerTitle = title.toLowerCase();
-      return Obx(() {
+
+    return Obx(() {
       // Check if sections map is empty
-      if (controller.choice.isEmpty) {
+      if (controller.sectioning.isEmpty) {
         return const SizedBox.shrink();
       }
 
-      final RxList<dynamic>? selectedList = controller.choice[lowerTitle];
+      final RxList<dynamic>? selectedList = controller.sectioning[lowerTitle];
 
       // Debug print to see what's happening
       print('Looking for section: $lowerTitle');
-      print('Available sections: ${controller.choice.keys}');
+      print('Available sections: ${controller.sectioning.keys}');
       print('Selected list: ${selectedList?.length ?? 0} items');
 
       if (selectedList == null) {
@@ -37,12 +45,11 @@ class SneakersOthersSection extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               title.toUpperCase(),
-              style: TextStyle(
-                
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
@@ -51,14 +58,17 @@ class SneakersOthersSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 260, // Matches the card height + margin
+            height: 330,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: controller.sneakersDen.length,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              itemCount: selectedList.length,
               itemBuilder: (context, index) {
-                final sneaker = controller.sneakersDen[index];
-                return SneakerCard(sneaker: sneaker);
+                final product = selectedList[index];
+                return Padding(
+                  padding: const EdgeInsets.only(right: 0),
+                  child: ProductCard2(product: product),
+                );
               },
             ),
           ),

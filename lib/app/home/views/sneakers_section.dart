@@ -1,5 +1,8 @@
 import 'package:fashion_store/app/home/views/men/banner_sections.dart';
+import 'package:fashion_store/app/home/views/men/categories_section.dart';
 import 'package:fashion_store/app/home/views/men/pack_it_up.dart';
+import 'package:fashion_store/app/home/views/men/sectionds/secondBanner.dart';
+import 'package:fashion_store/app/home/views/men/sectionds/sneakersdynamicsection.dart';
 import 'package:fashion_store/app/home/views/men/sneakers_den_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,24 +26,37 @@ class SneakersSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BannerSection(banners: controller.sneakersBanners),
+            const SizedBox(height: 5),
+            Secondbanner(banners: controller.sneakersSecondBanners,title: 'DROP ZONE'),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'FRESH OUT THE LAB'),
+          // PackItUp(category: 'sneakers', title: 'PACK IT UP'),
+          Sneakersdynamicsection(title: 'fresh out the lab'),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'BACK ON POPULAR DEMAND'),
+            CategoriesSection(categories: controller.sneakerscategories),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'BEST IN UBZ'),
+            Sneakersdynamicsection(title: 'back on popular demand'),
+         
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'BEST IN REVERB'),
+            Sneakersdynamicsection(title: 'best in ubz'),
+
+                      const SizedBox(height: 10),
+             Sneakersdynamicsection(title: 'sneakers for her'),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'BEST IN FUMES'),
+            SneakersOthersSection(title: 'what make us'),
+                        const SizedBox(height: 10),
+
+
+Sneakersdynamicsection(title: 'best in reverb'),
+                        const SizedBox(height: 10),
+                        Sneakersdynamicsection(title: 'best in fumes'),
+                        const SizedBox(height: 10),
+                        Sneakersdynamicsection(title: 'the lace edit'),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'THE LACE EDIT'),
+            Sneakersdynamicsection(title: "sock it up"),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'SOCK IT UP'),
+                SneakersOthersSection(title: "hear it from"),
             const SizedBox(height: 10),
-              PackItUp(controller: controller, title: 'PASTTEL PICKS'),
-            const SizedBox(height: 10),
-            SneakersDenSection(),
+            SneakersOthersSection(title: 'SNEAKERS DEN'),
 
             const SizedBox(height: 10),
        //     NewArrivalsSection(category: 'Sneakers'),

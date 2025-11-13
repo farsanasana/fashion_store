@@ -33,7 +33,7 @@ class TopPicksSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 380,
+            height: 300,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 8),

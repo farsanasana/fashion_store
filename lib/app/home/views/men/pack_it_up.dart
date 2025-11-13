@@ -95,23 +95,24 @@ import 'package:fashion_store/app/home/controller/home_controller.dart';
 import 'package:fashion_store/app/home/views/widgets/product_card2.dart';
 
 class PackItUp extends StatelessWidget {
-  final HomeController controller;
+  final String category;
   final String title;
 
   const PackItUp({
     super.key,
-    required this.controller,
+    required this.category,
     required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<HomeController>();
     final lowerTitle = title.toLowerCase();
 
     return Obx(() {
       // Check if sections map is empty
       if (controller.sections.isEmpty) {
-        return const SizedBox.shrink(); // or return loading indicator
+        return const SizedBox.shrink();
       }
 
       final RxList<dynamic>? selectedList = controller.sections[lowerTitle];

@@ -1,4 +1,6 @@
+import 'package:fashion_store/app/home/views/widgets/categories_deails.dart' show CategoryDetailPage;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryCard extends StatelessWidget {
   final Map<String, dynamic> category;
@@ -10,6 +12,7 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // TODO: Add navigation to category detail
+         Get.to(() => CategoryDetailPage(category: category));
         //
 
         

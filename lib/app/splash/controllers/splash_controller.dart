@@ -9,6 +9,6 @@ class SplashController extends GetxController {
 
   void _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3)); // splash duration
-    Get.offNamed('/home'); // navigate to Home page
+    Get.offNamed('/homepage'); // navigate to Home page
   }
 }
